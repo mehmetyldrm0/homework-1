@@ -14,35 +14,35 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ProductService employeeService;
+    private ProductService productService;
 
     @PostMapping()
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
-        ProductDto savedEmployee = employeeService.createProduct(productDto);
+        ProductDto savedEmployee = productService.createProduct(productDto);
         return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<ProductDto> getProductById(@PathVariable("id") Long employeeId) {
-        ProductDto productDto = employeeService.getProductById(employeeId);
+        ProductDto productDto = productService.getProductById(employeeId);
         return ResponseEntity.ok(productDto);
     }
 
     @GetMapping()
     public ResponseEntity<List<ProductDto>> getAllProduct() {
-        List<ProductDto> employees = employeeService.getAllProduct();
+        List<ProductDto> employees = productService.getAllProduct();
         return ResponseEntity.ok(employees);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ProductDto> updateProduct(@PathVariable("id") Long employeeId, @RequestBody ProductDto productDto) {
-        ProductDto updatedEmployee = employeeService.updateProduct(employeeId, productDto);
-        return ResponseEntity.ok(updatedEmployee);
+        ProductDto updatedProduct = productService.updateProduct(employeeId, productDto);
+        return ResponseEntity.ok(updatedProduct);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable("id") Long employeeId) {
-        employeeService.deleteProduct(employeeId);
+        productService.deleteProduct(employeeId);
 
         return ResponseEntity.ok("Product deleted successfully!.");
     }
